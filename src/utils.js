@@ -73,9 +73,24 @@ const resolveRelativePath = function (currentPath, relativePath) {
 
   if (isParentPath) {
     const currentPathElements = currentPath.split("/");
-    currentPathElements.pop();
+    const numberOfUpperDirectoryNavigations = (
+      relativePath.match(/\.\./g) || []
+    ).length;
+
+    if (
+      currentPathElements.length <= 1 ||
+      numberOfUpperDirectoryNavigations > currentPathElements.length - 1
+    )
+      throw new Error(
+        `Cannot resolve relative path "${relativePath}" from current path "${currentPath}"`
+      );
+
+    for (let i = 0; i < numberOfUpperDirectoryNavigations; i++) {
+      currentPathElements.pop();
+    }
+
     output = `${currentPathElements.join("/")}/${relativePath.replace(
-      "../",
+      /\.\.\//g,
       ""
     )}`;
   }

@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-meteor-typescript-import-transform",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Import transform helpers for Meteor's official TypeScript package",
   "repository": "https://github.com/adtribute/babel-plugin-meteor-typescript-import-transform",
   "main": "src/index.js",

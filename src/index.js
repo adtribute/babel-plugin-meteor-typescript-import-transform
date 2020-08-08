@@ -105,6 +105,7 @@ module.exports = function plugin(api) {
     // module system can understand.
     // e.g. 'imports/foo/bar' --> '/imports/foo/bar'
     if (
+      !resolvedSourceId.startsWith("/imports/") &&
       hasOwn.call(topLevelDirNames, importPathFirstElement) &&
       !hasOwn.call(nodeModulesDirNames, importPathFirstElement)
     ) {
